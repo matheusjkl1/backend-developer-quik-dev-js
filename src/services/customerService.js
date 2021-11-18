@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 require('dotenv').config();
 const md5 = require('md5');
-const Customer = require('../models/CustumerModel');
+const Customer = require('../models/CustomerModel');
 const generateToken = require('../utils/generateToken');
 
 const login = async ({ username, password: passwordUser }) => {
@@ -19,19 +19,22 @@ const login = async ({ username, password: passwordUser }) => {
     return { ...userWithOutPassword, token };
   }
 
-  return { error: 'user_not_found' };
+  return { error: 'customer_not_found' };
 };
 
-const registerUser = async ({
-  name,
-  username,
-  birthdate,
-  address,
-  addressNumber,
-  primaryPhone,
-  description,
-  password: passwordUser,
-}) => {
+const registerCustomer = async (customerData) => {
+  if (!Object.keys(customerData).length) return false
+  const {
+    name,
+    username,
+    birthdate,
+    address,
+    addressNumber,
+    primaryPhone,
+    description,
+    password: passwordUser,
+  } = customerData
+
   const passwordMd5 = md5(passwordUser);
 
   const modelResponse = await Customer.create({
@@ -53,7 +56,25 @@ const registerUser = async ({
   return { ...customer, token };
 };
 
+const findCostumerById = async (id) => {
+  const customer = await Customer.findById(id);
+
+  if (customer) return customer;
+
+  return { error: 'no_registered_customer' };
+}
+
+const findAllCustomers = async () => {
+  const customers = await Customer.find();
+
+  if (customers) return customers;
+
+  return { error: 'no_registered_customers' };
+};
+
 module.exports = {
   login,
-  registerUser,
+  registerCustomer,
+  findCostumerById,
+  findAllCustomers,
 };

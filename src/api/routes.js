@@ -1,9 +1,10 @@
 const Router = require('express');
-const { Register } = require('../controllers/CustomerController');
+const { Register, FindAllCostumers } = require('../controllers/CustomerController');
 
 const routes = Router();
 
-routes.get('/', (_req, res) => res.send('Oi'));
+// Rota criada apenas para visualização dos dados.
+routes.get('/', FindAllCostumers);
 
 routes.post('/', Register);
 
