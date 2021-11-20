@@ -1,15 +1,19 @@
 const Router = require('express');
-const { Register, FindAllCostumers } = require('../controllers/CustomerController');
+const {
+  RegisterCustomer, LoginCustomer, UpdateCostumer, FindCostumerById, DeleteCostumer,
+} = require('../controllers/CustomerController');
+const validateJwt = require('../middlewares/validateJwt');
 
 const routes = Router();
 
-// Rota criada apenas para visualização dos dados.
-routes.get('/', FindAllCostumers);
+routes.get('/:id', FindCostumerById);
 
-routes.post('/', Register);
+routes.post('/login', LoginCustomer);
 
-routes.put('/', (req, res) => res.status(200).send(req.body));
+routes.post('/register', RegisterCustomer);
 
-routes.delete('/', (req, res) => res.status(200).send(req.body));
+routes.put('/update', validateJwt, UpdateCostumer);
+
+routes.delete('/delete/:id', validateJwt, DeleteCostumer);
 
 module.exports = routes;

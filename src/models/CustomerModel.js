@@ -1,45 +1,55 @@
-const mongoose = require('./connection');
+/* eslint-disable no-console */
+const ObjectID = require('mongodb').ObjectId;
+const connection = require('./connection');
 
-const CustomerSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    select: false,
-  },
-  birthdate: {
-    type: String,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  addressNumber: {
-    type: String,
-    required: true,
-  },
-  primaryPhone: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+const findById = async (id) => connection().then(
+  (db) => db.collection('customers').findOne({ _id: ObjectID(id) }).then((res) => (res)),
+).catch((err) => err);
 
-const Costumer = mongoose.model('Custumer', CustomerSchema);
+const findUserByUsername = async ({ username }) => connection().then(
+  (db) => db.collection('customers').findOne({ username }).then((res) => res),
+).catch((err) => err);
 
-module.exports = Costumer;
+const findUser = async ({ username, password }) => connection().then(
+  (db) => db.collection('customers').findOne({ $and: [{ username }, { password }] }).then((res) => (res)),
+).catch((err) => err);
+
+const create = async ({
+  name, username, birthdate, address, addressNumber, primaryPhone, description, password,
+}) => connection().then((db) => db
+  .collection('customers')
+  .insertOne({
+    name,
+    username,
+    password,
+    birthdate,
+    address,
+    addressNumber,
+    primaryPhone,
+    description,
+    createdAt: new Date(),
+  }).then(({ insertedId }) => ({ id: insertedId })).catch((err) => (err)));
+
+const findByIdAndUpdate = async (userid, dataToUpdate) => {
+  const query = { _id: ObjectID(userid) };
+  const newValues = { $set: { ...dataToUpdate, updateAt: new Date() } };
+  const response = await connection().then((db) => db
+    .collection('customers')
+    .findOneAndUpdate(query, newValues));
+
+  const { _id: id } = response.value;
+  return { id, ...dataToUpdate };
+};
+
+const deleteCustomer = async (id) => connection().then(
+  (db) => db.collection('customers').findOneAndDelete({ _id: ObjectID(id) }).then((res) => (res)),
+).catch((err) => err);
+
+module.exports = {
+  create,
+  findById,
+  findUser,
+  findByIdAndUpdate,
+  findUserByUsername,
+  deleteCustomer,
+};

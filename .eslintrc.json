@@ -2,23 +2,15 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": false,
-        "node": true,
-        "jest/globals": true 
+        "es2021": true,
+        "jest": true,
+        "mocha": true
     },
     "extends": [
         "airbnb-base"
     ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-              "extensions": [".js", ".jsx"],
-              "moduleDirectory": ["node_modules", "src/"]
-            }
-        }
-    },
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": 13
     },
     "rules": {
         "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]

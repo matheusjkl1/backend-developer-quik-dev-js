@@ -1,29 +1,18 @@
 /* eslint-disable no-unused-vars */
 require('dotenv').config();
+const { ObjectId } = require('mongodb');
 const md5 = require('md5');
 const Customer = require('../models/CustomerModel');
 const generateToken = require('../utils/generateToken');
-
-const login = async ({ username, password: passwordUser }) => {
-  const passwordMd5 = md5(passwordUser);
-  const checkUserAlreadyExists = await Customer.findOne(
-    { $and: { username, password: passwordMd5 } },
-  );
-  if (checkUserAlreadyExists) {
-    const {
-      _id: id, password, email, ...userWithOutPassword
-    } = checkUserAlreadyExists;
-
-    const token = generateToken(id);
-
-    return { ...userWithOutPassword, token };
-  }
-
-  return { error: 'customer_not_found' };
-};
+const { validateBody } = require('../utils/joisSchema');
 
 const registerCustomer = async (customerData) => {
-  if (!Object.keys(customerData).length) return false
+  if (!Object.keys(customerData).length) return false;
+
+  const isValid = validateBody(customerData);
+
+  if (isValid.error) return { error: isValid.error };
+
   const {
     name,
     username,
@@ -33,9 +22,15 @@ const registerCustomer = async (customerData) => {
     primaryPhone,
     description,
     password: passwordUser,
-  } = customerData
+  } = customerData;
 
   const passwordMd5 = md5(passwordUser);
+
+  const checkUserAlreadyExists = await Customer.findUserByUsername({ username });
+
+  if (checkUserAlreadyExists) {
+    return { error: 'already_registered_user' };
+  }
 
   const modelResponse = await Customer.create({
     name,
@@ -49,32 +44,63 @@ const registerCustomer = async (customerData) => {
     role: 'user',
   });
 
-  const { _doc: doc } = modelResponse;
-  const { _id: id, password, ...customer } = doc;
+  const { id, ...customer } = modelResponse;
+
   const token = generateToken(id);
 
-  return { ...customer, token };
+  return { ...customer, id, token };
 };
 
-const findCostumerById = async (id) => {
-  const customer = await Customer.findById(id);
+// const getCostumerById = async (id) => {
+//   const customer = await Customer.findById(ObjectId(id));
 
-  if (customer) return customer;
+//   if (!customer) return { error: 'no_registered_customer' };
 
-  return { error: 'no_registered_customer' };
-}
+//   return customer;
+// };
 
-const findAllCustomers = async () => {
-  const customers = await Customer.find();
+const loginCustomer = async ({ username, password: passwordUser }) => {
+  if (!username || !passwordUser) return { error: 'incorret_data_form' };
 
-  if (customers) return customers;
+  const passwordMd5 = md5(passwordUser);
 
-  return { error: 'no_registered_customers' };
+  const checkUserAlreadyExists = await Customer.findUser({ username, password: passwordMd5 });
+
+  if (checkUserAlreadyExists) {
+    const { _id: id, password, ...customer } = checkUserAlreadyExists;
+
+    const token = generateToken(id);
+
+    return { ...customer, id, token };
+  }
+
+  return { error: 'customer_not_found' };
+};
+
+const updateCustomer = async (id, dataToUpdate) => {
+  if (!Object.keys(dataToUpdate).length) return { error: 'incorret_data_form' };
+
+  const customerUpdate = await Customer.findByIdAndUpdate(id, dataToUpdate);
+  console.log(customerUpdate, 'Customer Update');
+  if (!customerUpdate) return { error: 'no_registered_customer' };
+
+  return customerUpdate;
+};
+
+const deleteCustomerById = async (id) => {
+  if (!ObjectId.isValid(id)) return { error: 'id_invalid' };
+
+  const customerDelete = await Customer.deleteCustomer(ObjectId(id));
+
+  if (!customerDelete.value) return { error: 'no_registered_customer' };
+
+  return { message: 'successfully_deleted' };
 };
 
 module.exports = {
-  login,
+  loginCustomer,
   registerCustomer,
-  findCostumerById,
-  findAllCustomers,
+  // getCostumerById,
+  updateCustomer,
+  deleteCustomerById,
 };

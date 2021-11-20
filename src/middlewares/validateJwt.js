@@ -8,19 +8,32 @@ const SECRET_KEY = require('fs')
 
 const { UNAUTHORIZED } = require('../utils/statusCode');
 
-const Customer = require('../models/CustumerModel');
+const Customer = require('../models/CustomerModel');
 
 module.exports = async (req, _res, next) => {
   const { authorization: token } = req.headers;
-
   if (!token) return next({ statusCode: UNAUTHORIZED, message: 'Token not found' });
 
-  const payload = jwt.verify(token, SECRET_KEY);
-  const user = await Customer.findById(payload.userId);
+  const payload = jwt.verify(token, SECRET_KEY, (err, result) => ({ err, result }));
 
-  if (!user) return next({ statusCode: UNAUTHORIZED, message: 'User not found' });
+  if (payload.err) {
+    return next({
+      statusCode: UNAUTHORIZED,
+      message: payload.err,
+    });
+  }
 
-  req.user = user.registrationNumber;
+  const user = await Customer.findById(payload.result.userId);
+  if (!user) return next({ statusCode: UNAUTHORIZED, message: 'Invalid Token' });
+
+  const { _id: id } = user;
+
+  req.user = { id };
 
   return next();
 };
+
+// jwt expired
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+// eyJ1c2VySWQiOiI2MTk4ODUxYzY4ZWM2MThjYTNkM2Y3NjYiLCJpYXQiOjE2MzczODU1MDAsImV4cCI6MTYzNzM4ODgwMH0.
+// jGLIRHILkA8F2pf7xnb5rx2H81N1RDzfE020ykHGJiI

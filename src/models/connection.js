@@ -1,15 +1,24 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 
-const { NODE_ENV, DB_TEST, DB_DEV, DB_PROD } = process.env;
-
-const dbUrl = NODE_ENV === 'DEV' ? DB_TEST : DB_DEV || DB_PROD
-
-mongoose.connect(dbUrl, {
+const OPTIONS = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+};
 
-mongoose.connection.useDb(NODE_ENV)
+const {
+  DB_DEV_NAME, DB_PROD_NAME, NODE_ENV, DB_URL,
+} = process.env;
 
-module.exports = mongoose;
+const DB_NAME = NODE_ENV === 'DEV' ? DB_DEV_NAME : DB_PROD_NAME;
+
+let db = null;
+
+const connection = () => (db
+  ? Promise.resolve(db)
+  : MongoClient.connect(DB_URL, OPTIONS).then((conn) => {
+    db = conn.db(DB_NAME);
+    return db;
+  }));
+
+module.exports = connection;
