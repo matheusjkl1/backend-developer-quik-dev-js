@@ -43,11 +43,10 @@ yarn dev
 ## Após inciar o projeto temos acesso a 5 rotas
 
 #### *GET*
+  Nesta rota é possivel listar um usuario 
 ```sh
 1 - http://localhost:${SERVER_PORT}/customer/${ID do Usuario}
-```
-  Nesta rota é possivel listar um usuario 
- 
+``` 
 O retorna será
 ```sh
 {
@@ -62,15 +61,34 @@ O retorna será
 }
 ```
 #### *POST*
+Nesta rota é possivel cadastrar é possível *registrar* o usuario
 ```sh
 2 - http://localhost:${SERVER_PORT}/customer/register
 ```
-  Nesta rota é possivel cadastrar é possível *registrar* o usuario
+Ao passar um objeto:
+```sh
+{
+  "name": "name example",
+  "username": "usernameexample",
+  "password": "passwordexample",
+  "birthdate": "25/04/63",
+  "address": "adress example",
+  "addressNumber": "1590",
+  "primaryPhone": "11995676646",
+  "description": "Description example"
+}
+```
+O retorna será:
+```sh
+{
+    "id": "619a9c4aac16ea1246ff3cf9",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOWM0YWFjMTZlYTEyNDZmZjNjZjkiLCJpYXQiOjE2Mzc1MjI1MDYsImV4cCI6MTYzNzUyNTgwNn0.0pXkSB-NkrXhk-NTiqsFvBaZxyBjjjZgjp_QppEmsr4"
+}
+```
+
+  Nesta rota é possivel *logar* um usuario
 ```sh
 3 - http://localhost:${SERVER_PORT}/customer/login
-```
-  Nesta rota é possivel cadastrar é possível *logar* um usuario
-```sh
 ```
 #### *PUT*
 ```sh
