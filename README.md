@@ -8,13 +8,13 @@
 1. Clone o repositório
   * `git clone git@github.com:matheusjkl1/in-company.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd in-company`
+    * `cd Backend-Developer`
  
 ## Para Iniciar o Projeto
 
 ### Execute o seguinte comando para instalar as dependências de desenvolvimento do projeto: 
 ```sh
-npm install
+yarn install
 ```
 
 ## Implementações técnicas
