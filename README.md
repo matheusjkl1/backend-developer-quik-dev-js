@@ -19,21 +19,46 @@ yarn install
 
 ## Implementações técnicas
 
+### Na raiz do diretório do projeto, crie um arquivo *.env* seguindo com as variáveis de ambiente que estão presentes no arquivo .env.example, *é preferivel o uso dos mesmos valores.*
+```sh
+SERVER_PORT=4323
+
+DB_PORT=27017
+DB_HOST=db
+DB_NAME=dev
+DB_USER=
+DB_PASS=
+```
+
 ### Na raiz do diretório do projeto, execute o seguinte comando que fará a instalação do container docker
 ```sh
  make down && make up
 ```
-
 ### Após installar as dependências, você deve executar o seguinte comando para iniciar o Back-end:
 
 ```sh
 yarn dev
 ```
 
-### Após inciar o projeto temos acesso a 5 rotas
+## Após inciar o projeto temos acesso a 5 rotas
 
 #### *GET*
+  Nesta rota é possivel listar um usuario 
 ```sh
+http://localhost:${SERVER_PORT}/customer/register
+```
+o retorna será
+```sh
+{
+    "_id": "619a96f33bc918e6bdb13f3c",
+    "name": "Fausto",
+    "birthdate": "02/10/96",
+    "address": "59963 Ashly Walks",
+    "addressNumber": "5",
+    "primaryPhone": "51995676666",
+    "description": "Sou um cara divertido",
+    "createdAt": "2021-11-21T18:58:59.076Z"
+}
 ```
 #### *POST*
 ```sh
