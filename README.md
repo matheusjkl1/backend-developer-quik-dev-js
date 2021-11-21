@@ -31,8 +31,6 @@ yarn dev
 ```
 
 ### Após inciar o projeto temos acesso a 5 rotas
-
-
 #### *GET*
 ```sh
 ```
