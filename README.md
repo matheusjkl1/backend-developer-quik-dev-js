@@ -144,11 +144,10 @@ O retorna será:
 ```sh
 2 - http://localhost:${SERVER_PORT}/customerdelete/${ID do Usuario}
 ```
-Ao passar um objeto:
 `Neste caso é necessário passar um token no Headers da requisição`
-``
+```sh
 Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOGYxZWRlOWJmN2U2MjcwMWU2MGQiLCJpYXQiOjE2Mzc1MTkxMzQsImV4cCI6MTYzNzUyMjQzNH0.fNGQ-Q9J3GkXhm_KcjCQkRsZxI9wGqd9hYdDJpHLT60
-``
+```
 ```sh
 {
   "name": "New name example",
@@ -157,21 +156,9 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOGYxZWR
 }
 ```
 O retorna será:
-```sh
-{
-    "id": "619a9c4aac16ea1246ff3cf9",
-    "name": "New name example",
-    "username": "example",
-    "password": "passwordexample",
-    "birthdate": "25/04/63",
-    "address": "New adress example",
-    "addressNumber": "1590-1111",
-    "primaryPhone": "5599567-0000",
-    "description": "New description example"
-}
-```
-
-
+`
+status 204 No Content
+`
 ### Para testar a aplicação no diretório do projeto, você deve executar o seguinte comando:
 
 ```sh
