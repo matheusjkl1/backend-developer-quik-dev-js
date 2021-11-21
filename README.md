@@ -43,7 +43,7 @@ yarn dev
 ## Após inciar o projeto temos acesso a 5 rotas
 
 #### *GET*
-```sh
+1-```sh
 http://localhost:${SERVER_PORT}/customer/${ID do Usuario}
 ```
   Nesta rota é possivel listar um usuario 
@@ -62,11 +62,11 @@ O retorna será
 }
 ```
 #### *POST*
-```sh
+2-```sh
 http://localhost:${SERVER_PORT}/customer/register
 ```
   Nesta rota é possivel cadastrar é possível *registrar* o usuario
-```sh
+3-```sh
 http://localhost:${SERVER_PORT}/customer/login
 ```
   Nesta rota é possivel cadastrar é possível *logar* um usuario
