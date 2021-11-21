@@ -115,7 +115,11 @@ O retorna será:
 #### *PUT*
   Nesta rota é possivel *atualizar* o usuario
 ```sh
-2 - http://localhost:${SERVER_PORT}/customer/update
+4 - http://localhost:${SERVER_PORT}/customer/update
+```
+`Neste caso é necessário passar um token no Headers da requisição`
+```sh
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOGYxZWRlOWJmN2U2MjcwMWU2MGQiLCJpYXQiOjE2Mzc1MTkxMzQsImV4cCI6MTYzNzUyMjQzNH0.fNGQ-Q9J3GkXhm_KcjCQkRsZxI9wGqd9hYdDJpHLT60
 ```
 Ao passar um objeto:
 ```sh
@@ -142,7 +146,7 @@ O retorna será:
 #### *DELETE*
   Nesta rota é possivel *deletar* um usuario
 ```sh
-2 - http://localhost:${SERVER_PORT}/customerdelete/${ID do Usuario}
+5 - http://localhost:${SERVER_PORT}/customerdelete/${ID do Usuario}
 ```
 `Neste caso é necessário passar um token no Headers da requisição`
 ```sh
