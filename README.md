@@ -32,4 +32,15 @@ yarn dev
 
 ### Após inciar o projeto temos acesso a 5 rotas
 
+```sh
+*GET*
+*POST*
+*PUT*
+*DELETE*
+```
 
+### Para testar a aplicação no diretório do projeto, você deve executar o seguinte comando:
+
+```sh
+yarn test
+```
