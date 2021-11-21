@@ -90,11 +90,85 @@ O retorna será:
 ```sh
 3 - http://localhost:${SERVER_PORT}/customer/login
 ```
-#### *PUT*
+Ao passar um objeto:
 ```sh
+{
+  "username": "usernameexample",
+  "password": "passwordexample",
+}
+```
+O retorna será:
+```sh
+{
+    "name": "Name Example",
+    "username": "usernameexample",
+    "birthdate": "25/04/63",
+    "address": "Adress Example",
+    "addressNumber": "1003",
+    "primaryPhone": "21995676666",
+    "description": "Description example",
+    "createdAt": "2021-11-21T19:21:46.591Z",
+    "id": "619a9c4aac16ea1246ff3cf9",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOWM0YWFjMTZlYTEyNDZmZjNjZjkiLCJpYXQiOjE2Mzc1MjI2NzUsImV4cCI6MTYzNzUyNTk3NX0.yODEqEvAvCT0LKoqCAKL-4YUj26OlrsTrD7zs96S5kw"
+}
+```
+#### *PUT*
+  Nesta rota é possivel *atualizar* o usuario
+```sh
+2 - http://localhost:${SERVER_PORT}/customer/update
+```
+Ao passar um objeto:
+```sh
+{
+  "name": "New name example",
+  "address": "New adress example",
+  "description": "New description example"
+}
+```
+O retorna será:
+```sh
+{
+    "id": "619a9c4aac16ea1246ff3cf9",
+    "name": "New name example",
+    "username": "example",
+    "password": "passwordexample",
+    "birthdate": "25/04/63",
+    "address": "New adress example",
+    "addressNumber": "1590-1111",
+    "primaryPhone": "5599567-0000",
+    "description": "New description example"
+}
 ```
 #### *DELETE*
+  Nesta rota é possivel *deletar* um usuario
 ```sh
+2 - http://localhost:${SERVER_PORT}/customerdelete/${ID do Usuario}
+```
+Ao passar um objeto:
+`Neste caso é necessário passar um token no Headers da requisição`
+``
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOGYxZWRlOWJmN2U2MjcwMWU2MGQiLCJpYXQiOjE2Mzc1MTkxMzQsImV4cCI6MTYzNzUyMjQzNH0.fNGQ-Q9J3GkXhm_KcjCQkRsZxI9wGqd9hYdDJpHLT60
+``
+```sh
+{
+  "name": "New name example",
+  "address": "New adress example",
+  "description": "New description example"
+}
+```
+O retorna será:
+```sh
+{
+    "id": "619a9c4aac16ea1246ff3cf9",
+    "name": "New name example",
+    "username": "example",
+    "password": "passwordexample",
+    "birthdate": "25/04/63",
+    "address": "New adress example",
+    "addressNumber": "1590-1111",
+    "primaryPhone": "5599567-0000",
+    "description": "New description example"
+}
 ```
 
 
