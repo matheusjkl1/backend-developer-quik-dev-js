@@ -8,6 +8,7 @@ const SECRET_KEY = require('fs')
   )
   .trim();
 
+// configuracao do token, encode dele e tempo que fica disponivel para uso
 module.exports = (id) => {
   const jwtConfig = {
     expiresIn: '55m',

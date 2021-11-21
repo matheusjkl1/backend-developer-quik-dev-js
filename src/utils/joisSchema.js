@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
 function validateBody(body) {
+  // schema para validacao dos dados na hora da criacao do usuario
   const schema = Joi.object().keys({
     name: Joi.string().min(3).max(30)
       .required(),

@@ -23,17 +23,14 @@ module.exports = async (req, _res, next) => {
     });
   }
 
+  // faz a busca do usuario para validar se o token pertence a um usuario cadastrado.
   const user = await Customer.findById(payload.result.userId);
+
   if (!user) return next({ statusCode: UNAUTHORIZED, message: 'Invalid Token' });
 
   const { _id: id } = user;
 
   req.user = { id };
-
+  // retorna o token para o proximo middleware
   return next();
 };
-
-// jwt expired
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
-// eyJ1c2VySWQiOiI2MTk4ODUxYzY4ZWM2MThjYTNkM2Y3NjYiLCJpYXQiOjE2MzczODU1MDAsImV4cCI6MTYzNzM4ODgwMH0.
-// jGLIRHILkA8F2pf7xnb5rx2H81N1RDzfE020ykHGJiI

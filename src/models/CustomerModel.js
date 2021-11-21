@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const ObjectID = require('mongodb').ObjectId;
 const connection = require('./connection');
 

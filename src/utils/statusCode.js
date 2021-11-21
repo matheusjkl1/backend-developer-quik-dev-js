@@ -1,3 +1,4 @@
+// objeto com os status para melhorar a semantica do codigo
 const statusCode = {
   OK: 200,
   CREATED: 201,

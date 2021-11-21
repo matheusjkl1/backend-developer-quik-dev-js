@@ -19,6 +19,7 @@ const connection = () => (db
   ? Promise.resolve(db)
   : MongoClient.connect(DB_URL, OPTIONS).then((conn) => {
     db = conn.db(DB_NAME);
+    // testa se o banco conectou logo ao iniciar a aplicacao
     console.log(`Database Conectado DB NAME = ${db.s.namespace.db}`);
     return db;
   }));
