@@ -41,8 +41,8 @@ describe('Camada de Service - Loga um Customer ja registrado no Banco de dados',
     const passwordNotEncrypt = 'carlinhos1516';
 
     before(() => {
-      sinon.stub(CustomerModel, 'create')
-        .resolves(payloadCustomer);
+      // sinon.stub(CustomerModel, 'create')
+      //   .resolves(payloadCustomer);
       sinon.stub(CustomerModel, 'findUser')
         .resolves({ username: payloadCustomer.username, password: passwordNotEncrypt });
     });
@@ -50,11 +50,11 @@ describe('Camada de Service - Loga um Customer ja registrado no Banco de dados',
     // Restauraremos a função `findUser` original após os testes.
     after(() => {
       CustomerModel.findUser.restore();
-      CustomerModel.create.restore();
+      // CustomerModel.create.restore();
     });
 
     it('retorna um token', async () => {
-      await CustomerService.registerCustomer(payloadCustomer);
+      // await CustomerService.registerCustomer(payloadCustomer);
       const response = await CustomerService.loginCustomer({
         username: payloadCustomer.username, password: passwordNotEncrypt,
       });

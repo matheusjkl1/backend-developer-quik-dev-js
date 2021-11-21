@@ -24,20 +24,21 @@ describe('Camada de Service - Insere um novo Customer no BD', () => {
 
   describe('quando é inserido com sucesso', () => {
     const payloadCustomer = {
-      name: 'Carlos Adalberto',
-      username: 'adalshow',
-      password: 'carlinhos1516',
-      birthdate: '02/10/88',
-      address: 'Rua Juazeiro',
-      addressNumber: '1596',
-      primaryPhone: '11998667888',
-      description: 'Sou um cara amante de coisas legais e isso ai.',
+      name: 'Ricardo Kishine',
+      username: 'kishinin',
+      password: 'kiki7894123',
+      birthdate: '25/04/63',
+      address: 'Rua Pedrin Carnela',
+      addressNumber: '1590',
+      primaryPhone: '51995676666',
+      description: 'Um bom amigo para todos',
     };
 
     before(async () => {
       sinon.stub(CustomerModel, 'create')
-        .resolves(payloadCustomer);
+        .resolves({ id: '619a4be1565d8cda99c098a9' });
     });
+
     it('retorna um objeto e tal objeto possui o "token" do novo Customer inserido', async () => {
       const response = await CustomerModelService.registerCustomer(payloadCustomer);
 

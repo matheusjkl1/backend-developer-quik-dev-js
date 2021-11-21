@@ -81,7 +81,7 @@ const updateCustomer = async (id, dataToUpdate) => {
   if (!Object.keys(dataToUpdate).length) return { error: 'incorret_data_form' };
 
   const customerUpdate = await Customer.findByIdAndUpdate(id, dataToUpdate);
-  console.log(customerUpdate, 'Customer Update');
+
   if (!customerUpdate) return { error: 'no_registered_customer' };
 
   return customerUpdate;
