@@ -40,6 +40,12 @@ DB_PASS=
 yarn dev
 ```
 
+### Para testar a aplicação no diretório do projeto, você deve executar o seguinte comando:
+
+```sh
+yarn test
+```
+
 ## Após inciar o projeto temos acesso a 5 rotas
 
 #### *GET*
@@ -152,19 +158,9 @@ O retorna será:
 ```sh
 Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOGYxZWRlOWJmN2U2MjcwMWU2MGQiLCJpYXQiOjE2Mzc1MTkxMzQsImV4cCI6MTYzNzUyMjQzNH0.fNGQ-Q9J3GkXhm_KcjCQkRsZxI9wGqd9hYdDJpHLT60
 ```
-```sh
-{
-  "name": "New name example",
-  "address": "New adress example",
-  "description": "New description example"
-}
-```
+Ao passar o *id* como parametro da requisição.
+
 O retorna será:
 `
 status 204 No Content
 `
-### Para testar a aplicação no diretório do projeto, você deve executar o seguinte comando:
-
-```sh
-yarn test
-```
