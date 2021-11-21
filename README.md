@@ -61,7 +61,7 @@ O retorna será
 }
 ```
 #### *POST*
-Nesta rota é possivel cadastrar é possível *registrar* o usuario
+  Nesta rota é possivel *registrar* o usuario
 ```sh
 2 - http://localhost:${SERVER_PORT}/customer/register
 ```
