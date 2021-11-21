@@ -46,10 +46,10 @@ yarn dev
 yarn test
 ```
 
-## Após inciar o projeto temos acesso a 5 rotas
+## Após iniciar o projeto temos acesso a 5 rotas
 
 #### *GET*
-  Nesta rota é possivel listar um usuario 
+  Nesta rota é possivel listar um usuário 
 ```sh
 1 - http://localhost:${SERVER_PORT}/customer/${ID do Usuario}
 ``` 
@@ -67,7 +67,7 @@ O retorna será
 }
 ```
 #### *POST*
-  Nesta rota é possivel *registrar* o usuario
+  Nesta rota é possivel *registrar* o usuário
 ```sh
 2 - http://localhost:${SERVER_PORT}/customer/register
 ```
@@ -92,7 +92,7 @@ O retorna será:
 }
 ```
 
-  Nesta rota é possivel *logar* um usuario
+  Nesta rota é possivel *logar* um usuário
 ```sh
 3 - http://localhost:${SERVER_PORT}/customer/login
 ```
@@ -119,7 +119,7 @@ O retorna será:
 }
 ```
 #### *PUT*
-  Nesta rota é possivel *atualizar* o usuario
+  Nesta rota é possivel *atualizar* o usuário
 ```sh
 4 - http://localhost:${SERVER_PORT}/customer/update
 ```
@@ -150,7 +150,7 @@ O retorna será:
 }
 ```
 #### *DELETE*
-  Nesta rota é possivel *deletar* um usuario
+  Nesta rota é possivel *deletar* um usuário
 ```sh
 5 - http://localhost:${SERVER_PORT}/customer/delete/${ID do Usuario}
 ```
