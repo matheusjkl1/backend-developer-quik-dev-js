@@ -35,10 +35,16 @@ const findByIdAndUpdate = async (userid, dataToUpdate) => {
   const newValues = { $set: { ...dataToUpdate, updateAt: new Date() } };
   const response = await connection().then((db) => db
     .collection('customers')
-    .findOneAndUpdate(query, newValues));
+    .findOneAndUpdate(query, newValues)).catch((err) => err);
 
-  const { _id: id } = response.value;
-  return { id, ...dataToUpdate };
+  if (response.value) {
+    const { _id: id } = response.value;
+
+    return { id, ...dataToUpdate };
+  }
+
+  const { updatedExisting } = response.lastErrorObject;
+  return { updatedExisting };
 };
 
 const deleteCustomer = async (id) => connection().then(

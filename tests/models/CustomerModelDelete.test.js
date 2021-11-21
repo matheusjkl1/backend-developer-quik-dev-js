@@ -28,9 +28,9 @@ describe('Camada de Model - Busca um Customer no Banco de Dados através do ID',
 
   describe('quando existe um Customer para o ID informado', async () => {
     before(async () => {
-      const moviesCollection = await connectionMock;
+      const customerCollection = await connectionMock;
 
-      await moviesCollection.db('test').collection('customers').insertOne({
+      await customerCollection.db('test').collection('customers').insertOne({
         _id: ObjectId(ID_EXAMPLE),
         name: 'Carlos Adalberto',
         username: 'adalshow',

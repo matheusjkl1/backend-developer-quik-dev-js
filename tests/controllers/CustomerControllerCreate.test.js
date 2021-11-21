@@ -1,8 +1,8 @@
 const sinon = require('sinon');
 const spies = require('chai-spies');
 const chai = require('chai');
-const { MongoClient } = require('mongodb');
 const { expect } = require('chai');
+const { MongoClient } = require('mongodb');
 const { getConnection } = require('../models/mongoMockConnections');
 const { RegisterCustomer } = require('../../src/controllers/CustomerController');
 const CustomerService = require('../../src/services/customerService');
@@ -71,16 +71,9 @@ describe('Camada de Controller - Ao chamar o controller de register', () => {
     });
 
     after(() => {
-      CustomerService.registerCustomer.restore();
-      after(async () => {
-        await connectionMock.db('test').collection('customers').drop();
-      });
-    });
-
-    after(async () => {
       MongoClient.connect.restore();
+      CustomerService.registerCustomer.restore();
     });
-
     it('é chamado o status com o código 201', async () => {
       await RegisterCustomer(request, response, next);
       expect(response.status.calledWith(201)).to.be.equal(true);

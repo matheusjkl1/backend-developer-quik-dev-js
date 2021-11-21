@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "nodemon src/api/server.js",
-    "test": "NODE_ENV=TEST mocha ./tests/**/*$NAME*.test.js --exit "
+    "start": "node src/api/server.js",
+    "test": "mocha ./tests/**/*$NAME*.test.js --watch "
   },
   "dependencies": {
     "body-parser": "1.19.0",

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
@@ -7,18 +8,21 @@ const OPTIONS = {
 };
 
 const {
-  DB_DEV_NAME, DB_PROD_NAME, NODE_ENV, DB_URL,
+  DB_HOST, DB_PORT, DB_NAME,
 } = process.env;
 
-const DB_NAME = NODE_ENV === 'DEV' ? DB_DEV_NAME : DB_PROD_NAME;
-
 let db = null;
+
+const DB_URL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?readPreference=primary&directConnection=true&ssl=false`;
 
 const connection = () => (db
   ? Promise.resolve(db)
   : MongoClient.connect(DB_URL, OPTIONS).then((conn) => {
     db = conn.db(DB_NAME);
+    console.log(`Database Conectado DB NAME = ${db.s.namespace.db}`);
     return db;
   }));
+
+connection();
 
 module.exports = connection;
