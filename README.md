@@ -152,7 +152,7 @@ O retorna será:
 #### *DELETE*
   Nesta rota é possivel *deletar* um usuario
 ```sh
-5 - http://localhost:${SERVER_PORT}/customerdelete/${ID do Usuario}
+5 - http://localhost:${SERVER_PORT}/customer/delete/${ID do Usuario}
 ```
 `Neste caso é necessário passar um token no Headers da requisição`
 ```sh
