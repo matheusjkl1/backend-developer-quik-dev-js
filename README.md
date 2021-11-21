@@ -33,16 +33,16 @@ yarn dev
 ### Após inciar o projeto temos acesso a 5 rotas
 
 
-# *GET*
+### *GET*
 ```sh
 ```
-# *POST*
+### *POST*
 ```sh
 ```
-# *PUT*
+### *PUT*
 ```sh
 ```
-# *DELETE*
+### *DELETE*
 ```sh
 ```
 
