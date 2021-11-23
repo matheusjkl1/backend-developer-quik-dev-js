@@ -6,7 +6,7 @@
   3. `Docker`
 
 1. Clone o repositório
-  * `git clone git@github.com:matheusjkl1/in-company.git`.
+  * `git clone git@github.com:matheusjkl1/backend-developer-quik-dev-js.git`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd Backend-Developer`
  
