@@ -53,7 +53,7 @@ yarn test
 ```sh
 1 - http://localhost:${SERVER_PORT}/customer/${ID do Usuario}
 ``` 
-O retorna será
+O retorno será
 ```sh
 {
     "_id": "619a96f33bc918e6bdb13f3c",
@@ -84,7 +84,7 @@ Ao passar um objeto:
   "description": "Description example"
 }
 ```
-O retorna será:
+O retorno será:
 ```sh
 {
     "id": "619a9c4aac16ea1246ff3cf9",
@@ -103,7 +103,7 @@ Ao passar um objeto:
   "password": "passwordexample",
 }
 ```
-O retorna será:
+O retorno será:
 ```sh
 {
     "name": "Name Example",
@@ -135,7 +135,7 @@ Ao passar um objeto:
   "description": "New description example"
 }
 ```
-O retorna será:
+O retorno será:
 ```sh
 {
     "id": "619a9c4aac16ea1246ff3cf9",
@@ -160,7 +160,7 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTlhOGYxZWR
 ```
 Ao passar o *id* como parametro da requisição.
 
-O retorna será:
+O retorno será:
 `
 status 204 No Content
 `
